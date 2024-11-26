@@ -14,5 +14,13 @@
     {
         "sigle": "MTH1102",
         "credits": 2
+    },
+    {
+        "sigle": "INF3500",
+        "credits": 4
+    },
+    {
+        "sigle": "LOG2400",
+        "credits": "3"
     }
 ]
