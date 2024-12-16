@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import CartContext from "./CartContext";
+import CartContext from "../components/CartContext";
 
 const Header = () => {
     const { state } = useContext(CartContext);

@@ -1,8 +1,13 @@
+import { Link } from "react-router-dom";
+import { useContext } from "react";
+import CartContext from "../components/CartContext";
+
 const Header = () => {
+    const { state } = useContext(CartContext);
     return (
         <nav id='navbar'>
-            <a href="/">Produits</a>
-            <a href="/cart">Panier(TODO : Afficher la taille du panier)</a>
+            <Link to="/">Produits</Link>
+            <Link to="/cart">Panier({state.products.length})</Link>
         </nav>
     )
 };

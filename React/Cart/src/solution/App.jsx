@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./Header";
 import ProductPage from "./ProductPage";
 import Cart from "./Cart";
-import CartProvider from "./CartProvider";
+import CartProvider from "../components/CartProvider";
 
 export default function App() {
     return (

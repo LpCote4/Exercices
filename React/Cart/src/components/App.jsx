@@ -1,14 +1,19 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./Header";
 import ProductPage from "./ProductPage";
 import Cart from "./Cart";
+import CartProvider from "./CartProvider";
 
 export default function App() {
-  return (
-    <>
-      <h1>TODO : séparer en 2 routes la page de produits (/) et le panier (/cart) dans Header</h1>
-      <Header></Header>
-      <ProductPage />
-      <Cart />
-    </>
+    return (
+      <BrowserRouter>
+        <CartProvider>
+          <Header></Header>
+          <Routes>
+              <Route exact path="/" element={<ProductPage />} />
+              <Route path="/cart" element={<Cart />} />
+          </Routes>
+        </CartProvider>
+      </BrowserRouter>
   );
 }
