@@ -5,6 +5,12 @@ const ACTIONS = {
     RENAME: "rename",
 };
 
+// - Ajouter l'attribut _maxValue_ dans l'état. Cet attribut est configuré à la création du compteur et représente la valeur maximale que votre compteur peut prendre lorsqu'il est incrémenté.
+// - Borner les valeurs de _count_ à [0,_maxValue_]. Lorsqu'une action `INCREMENT` ou `DECREMENT` valide est envoyé au _reducer_, _count_ est 
+//      modifiée, mais ne peut pas dépasser les bornes configurées.
+// - Ajouter une nouvelle action `RENAME`. Cette action change le nom (_name_) du compteur seulement si le nouveau nom n'est 
+//      pas vide et contient 10 caractères ou moins. Si ces conditions ne sont pas respectées, le nom du compteur reste le même.
+
 /**
  * @param { {name : string, count : number, maxValue : number} } state l'état courrant
  * @param {{type : string, payload}} action action à appliquer. Contient un type et un contenu (payload)
@@ -13,11 +19,16 @@ const ACTIONS = {
 const reducer = (state, action) => {
     switch (action.type) {
         case ACTIONS.INCREMENT:
-            return { name: state.name, count: state.count + action.payload };
+            return { ...state, count: Math.min(action.payload + state.count, state.maxValue) };
         case ACTIONS.DECREMENT:
-            return { name: state.name, count: state.count - action.payload };
+            return { ...state, count: Math.max(state.count - action.payload, 0) };
         case ACTIONS.RESET:
             return { ...state, count: 0 };
+        case ACTIONS.RENAME:
+            return { 
+                ...state,
+                name: action.payload
+             }
         default:
             return state;
     }
