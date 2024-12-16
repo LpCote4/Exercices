@@ -8,12 +8,12 @@ export default function InfiniteScroll() {
     const fetchData = () => {
         // Simuler un appel API pour récupérer 10 messages à la fois
         setTimeout(() => {
-            // TODO : ajouter les nouveaux messages à ceux déjà présents
             const newMessages = Array.from(
                 { length: 10 },
                 (_, index) => `Message ${messages.length + index + 1}`
             );
-        }, 200);
+            setMessages([...messages, ...newMessages]);
+        }, 0);
     };
 
     const onScroll = () => {
@@ -22,16 +22,20 @@ export default function InfiniteScroll() {
             setPage(page => page + 1);
         }
     };
+    useEffect(() => {
+        window.addEventListener('scroll', onScroll);
+    }, []);
 
-    // TODO : Ajouter un gestionnaire à l'événement scroll de la fenêtre 1 seule fois
-    useEffect(() => {});
-
-    // TODO : Charger des messages lorsqu'on est à la fin de la page
+    useEffect(() => {
+        fetchData();
+    }, [page])
 
     return (
         <>
             <h1>Menu infini : Descendre pour voir les nouveaux messages</h1>
-            <Card text="TODO : REMPLACES-MOI PAR LA LISTE DES MESSAGES" index={1} />
+            {messages.map((message, i) => (
+                <Card text={message} index={i+1} key={i} />
+            ))}
         </>
     );
 }

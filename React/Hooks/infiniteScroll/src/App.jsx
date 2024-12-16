@@ -1,5 +1,5 @@
-// import InfiniteScroll from './InfiniteScroll';
-import InfiniteScroll from './Solution';
+import InfiniteScroll from './InfiniteScroll';
+// import InfiniteScroll from './Solution';
 
 function App() {
 
